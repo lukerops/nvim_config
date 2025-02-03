@@ -8,8 +8,8 @@ return {
     provider = 'openai_fim_compatible',
     provider_options = {
       openai_fim_compatible = {
-	model = "qwen2.5-coder:3b",
-	end_point = "http://192.168.15.102:11434/v1/completions",
+	model = "qwen2.5-coder:1.5b",
+	end_point = "http://localhost:11434/v1/completions",
 	name = "Ollama",
 	stream = true,
 	api_key = 'SHELL',

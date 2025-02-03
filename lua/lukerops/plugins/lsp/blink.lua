@@ -75,13 +75,19 @@ return {
       },
       -- Display a preview of the selected item on the current line
       ghost_text = { enabled = true },
+      -- Avoid unnecessary request
+      trigger = { prefetch_on_insert = false },
     },
     signature = { window = { border = config.ui.border } },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', "copilot", "codecompanion", "minuet" },
+      default = {
+	'lsp', 'path', 'snippets', 'buffer',
+        "copilot", "codecompanion",
+	-- "minuet",
+      },
       providers = {
 	codecompanion = {
           name = "CodeCompanion",
@@ -94,13 +100,13 @@ return {
 	  -- async = true,
 	  transform_items = setItemKind("Copilot"),
 	},
-	minuet = {
-	  name = 'minuet',
-	  module = 'minuet.blink',
-	  score_offset = 100, -- Gives minuet higher priority among suggestions
-	  -- async = true,
-	  transform_items = setItemKind("AI"),
-	},
+	-- minuet = {
+	--   name = 'minuet',
+	--   module = 'minuet.blink',
+	--   score_offset = 100, -- Gives minuet higher priority among suggestions
+	--   -- async = true,
+	--   transform_items = setItemKind("AI"),
+	-- },
       },
     },
   },
