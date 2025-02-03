@@ -1,5 +1,8 @@
 require("lukerops.lazy")
 
+-- Ensure the ollama is running
+require("lukerops.ollama")
+
 local config = require("lukerops.config")
 
 -- Set colorscheme
