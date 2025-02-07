@@ -31,6 +31,89 @@ return {
     lspconfig.util.default_config.capabilities = require('blink.cmp')
       .get_lsp_capabilities(lspconfig.util.default_config.capabilities)
 
+    lspconfig.lsp_ai.setup({
+      init_options = {
+        -- memory = {
+        --   -- It is important to use this method as `{}` will be interpreted as an array when it should be an object
+        --   file_store = vim.fn.empty_dict()
+        -- },
+	models = {
+	  ["qwen2.5-coder"] = {
+	    type = "open_ai",
+	    chat_endpoint = "https://chat.lukerops.com/ollama/v1/chat/completions",
+	    model = "qwen2.5-coder:1.5b",
+	    auth_token = os.getenv("OLLAMA_API_KEY"),
+	  }
+	  -- model1 = {
+	  --   type = "ollama",
+	  --   chat_endpoint = "http://192.168.15.212:11434/api/chat",
+	  --   model = "qwen2.5-coder:1.5b",
+	  -- }
+        },
+	completion = {
+          model = "qwen2.5-coder",
+          parameters = {
+            -- max_context = 32768,
+            -- max_tokens = 4096,
+	    messages = {
+	      {
+	        role = "system",
+	        content = "Instructions:\n- You are an AI programming assistant.\n- Given a piece of code with the cursor location marked by \"<CURSOR>\", replace \"<CURSOR>\" with the correct code or comment.\n- First, think step-by-step.\n- Describe your plan for what to build in pseudocode, written out in great detail.\n- Then output the code replacing the \"<CURSOR>\"\n- Ensure that your completion fits within the language context of the provided code snippet (e.g., Python, JavaScript, Rust).\n\nRules:\n- Only respond with code or comments.\n- Only replace \"<CURSOR>\"; do not include any previously written code.\n- Never include \"<CURSOR>\" in your response\n- If the cursor is within a comment, complete the comment meaningfully.\n- Handle ambiguous cases by providing the most contextually appropriate completion.\n- Be consistent with your responses."
+	      },
+	      {
+	        role = "user",
+	        content = "def greet(name):\n    print(f\"Hello, {<CURSOR>}\")"
+	      },
+	      {
+	        role = "assistant",
+	        content = "name"
+	      },
+	      {
+	        role = "user",
+	        content = "function sum(a, b) {\n    return a + <CURSOR>;\n}"
+	      },
+	      {
+	        role = "assistant",
+	        content = "b"
+	      },
+	      {
+	        role = "user",
+	        content = "fn multiply(a: i32, b: i32) -> i32 {\n    a * <CURSOR>\n}"
+	      },
+	      {
+	        role = "assistant",
+	        content = "b"
+	      },
+	      {
+	        role = "user",
+	        content = "# <CURSOR>\ndef add(a, b):\n    return a + b"
+	      },
+	      {
+	        role = "assistant",
+	        content = "Adds two numbers"
+	      },
+	      {
+	        role = "user",
+	        content = "# This function checks if a number is even\n<CURSOR>"
+	      },
+	      {
+	        role = "assistant",
+	        content = "def is_even(n):\n    return n % 2 == 0"
+	      },
+	      {
+	        role = "user",
+	        content = "{CODE}"
+	      }
+	    },
+	    post_process = {
+	      remove_duplicate_start = false,
+	      remove_duplicate_end = false
+	    }
+          }
+        }
+      }
+    })
+
     -- cria um on_attach default
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP actions',

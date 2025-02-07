@@ -1,13 +1,35 @@
 local config = require("lukerops.config")
 
+local function findItemKind(CompletionItemKind, kind)
+  for index, kind_name in ipairs(CompletionItemKind) do
+    if kind_name == kind then
+      return index
+    end
+  end
+
+  return 0
+end
+
+local function createItemKind(kind)
+  local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+  local kind_idx = findItemKind(CompletionItemKind, kind)
+
+  if kind_idx == 0 then
+    kind_idx = #CompletionItemKind + 1
+    CompletionItemKind[kind_idx] = kind
+  end
+
+  return kind_idx
+end
+
 local function setItemKind(kind)
   return function(_, items)
-    local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-    local kind_idx = #CompletionItemKind + 1
-    CompletionItemKind[kind_idx] = kind
+    local kind_idx = createItemKind(kind)
+
     for _, item in ipairs(items) do
       item.kind = kind_idx
     end
+
     return items
   end
 end
@@ -89,6 +111,39 @@ return {
 	-- "minuet",
       },
       providers = {
+	lsp = {
+        name = 'LSP',
+        module = 'blink.cmp.sources.lsp',
+        fallbacks = { 'buffer' },
+        transform_items = function(_, items)
+	  local kind_idx = createItemKind("AI")
+	  local lsp_ai_id = 0
+
+	  local lsp_ai_clients = vim.lsp.get_clients({ name = "lsp_ai" })
+	  if #lsp_ai_clients == 1 then
+	    lsp_ai_id = lsp_ai_clients[1].id
+	  end
+
+          for _, item in ipairs(items) do
+            -- demote snippets
+            if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
+              item.score_offset = item.score_offset - 3
+            end
+
+	    -- set kind to AI for lsp_ai sources
+	    if item.client_id == lsp_ai_id then
+	      item.kind = kind_idx
+	      item.score_offset = item.score_offset + 5
+	    end
+          end
+
+          -- filter out text items, since we have the buffer source
+          return vim.tbl_filter(
+            function(item) return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text end,
+            items
+          )
+        end,
+      },
 	codecompanion = {
           name = "CodeCompanion",
           module = "codecompanion.providers.completion.blink",
