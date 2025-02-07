@@ -1,0 +1,37 @@
+---
+name: lsp-ai
+description: LSP server leveraging AI/LLMs based for code completion.
+homepage: https://github.com/SilasMarvin/lsp-ai
+licenses:
+  - MIT
+languages: []
+categories:
+  - LSP
+
+source:
+  id: pkg:github/SilasMarvin/lsp-ai@v0.7.1
+  asset:
+    - target: darwin_x64
+      file: lsp-ai-x86_64-apple-darwin.gz
+      bin: lsp-ai-x86_64-apple-darwin
+    - target: darwin_arm64
+      file: lsp-ai-aarch64-apple-darwin.gz
+      bin: lsp-ai-aarch64-apple-darwin
+    - target: linux_x64_musl
+      file: lsp-ai-x86_64-unknown-linux-musl.gz
+      bin: lsp-ai-x86_64-unknown-linux-musl
+    - target: linux_arm64_gnu
+      file: lsp-ai-aarch64-unknown-linux-gnu.gz
+      bin: lsp-ai-aarch64-unknown-linux-gnu
+    - target: linux_x64_gnu
+      file: lsp-ai-x86_64-unknown-linux-gnu.gz
+      bin: lsp-ai-x86_64-unknown-linux-gnu
+    - target: win_x64
+      file: lsp-ai-x86_64-pc-windows-msvc.zip
+      bin: lsp-ai.exe
+    - target: win_arm64
+      file: lsp-ai-aarch64-pc-windows-msvc.zip
+      bin: lsp-ai.exe
+
+bin:
+  lsp-ai: "{{source.asset.bin}}"
