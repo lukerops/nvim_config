@@ -16,7 +16,9 @@ local defaults = {
       open = "<leader>fe",
     },
     editor = {
-      toggleCommentLinewise = "<C-_>",
+      moveLineUp = "<A-Up>",
+      moveLineDown = "<A-Down>",
+      toggleCommentLinewise = "gc",
       openDocumentDiagnostics = "<leader>dd",
       toggleTodoComments = "<leader>tt",
       toggleTodoFixComments = "<leader>ttf",
@@ -33,23 +35,33 @@ local defaults = {
         runDebug = "<leader>tdbg",
       },
     },
+    ui = {
+      scrollUp = "<C-Up>",
+      scrollDown = "<C-Down>",
+      keymapsHelp = "<leader>?",
+    },
     search = {
       inFiles = "<leader>/",
       files = "<leader>ff",
       buffers = "<leader>fb",
+      todoComments = "<leader>ft",
       gitBranches = "<leader>gb",
       gitCommits = "<leader>gc",
       gitStatus = "<leader>gs",
       commandHistory = "<leader>sh",
       helpTags = "<leader>sH",
       keymaps = "<leader>sk",
-      todoComments = "<leader>st",
     },
   },
   ui = {
     border = "rounded",
     colorscheme = "tokyonight-night",
     indentationGuide = true,
+    ai = {
+      chat = {
+        showLineNumber = false,
+      },
+    },
   },
   -- icons used by other plugins
   -- stylua: ignore

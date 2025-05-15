@@ -1,3 +1,5 @@
+local config = require("lukerops.config")
+
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
@@ -13,7 +15,11 @@ return {
       chat = {
 	show_references = true,
 	window = {
-	  border = require("lukerops.config").ui.border,
+	  border = config.ui.border,
+	  opts = {
+	    -- https://neovim.io/doc/user/options.html#'number'
+            number = config.ui.ai.chat.showLineNumber,
+	  },
 	},
       },
     },
@@ -22,7 +28,8 @@ return {
     },
     strategies = {
       chat = {
-	adapter = "ollama",
+	-- adapter = "ollama",
+	adapter = "copilot",
 	slash_commands = {
 	  ["buffer"] = { opts = { provider = "telescope" } },
 	  ["file"] = { opts = { provider = "telescope" } },
@@ -35,7 +42,8 @@ return {
       ollama = function()
 	return require("codecompanion.adapters").extend("ollama", {
 	  env = {
-	    url = "https://chat.lukerops.com/ollama",
+	    -- url = "https://chat.lukerops.com/ollama",
+	    url = "http://localhost:11434",
 	    api_key = os.getenv("OLLAMA_API_KEY"),
 	  },
 	  headers = {

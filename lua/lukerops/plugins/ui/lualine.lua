@@ -15,6 +15,7 @@ return {
         statusline = {
           "mason",
           "lazy",
+	  "codecompanion",
         },
       },
     },
