@@ -87,13 +87,13 @@ return {
 
     completion = {
       menu = {
-	auto_show = function(ctx, _) return ctx.mode ~= 'cmdline' end,
-	border = config.ui.border,
-	draw = { columns = { { 'label', 'label_description', gap = 1 }, { "kind_icon", "kind" } } }
+        auto_show = function(ctx, _) return ctx.mode ~= 'cmdline' end,
+        border = config.ui.border,
+        draw = { columns = { { 'label', 'label_description', gap = 1 }, { "kind_icon", "kind" } } }
       },
       documentation = {
-	auto_show = true,
-	window = { border = config.ui.border },
+        auto_show = true,
+        window = { border = config.ui.border },
       },
       -- Display a preview of the selected item on the current line
       ghost_text = { enabled = true },
@@ -106,62 +106,63 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = {
-	'lsp', 'path', 'snippets', 'buffer',
+        'lsp', 'path', 'snippets', 'buffer',
         "copilot", "codecompanion",
-	-- "minuet",
+        -- "minuet",
       },
       providers = {
-	lsp = {
-        name = 'LSP',
-        module = 'blink.cmp.sources.lsp',
-        fallbacks = { 'buffer' },
-        transform_items = function(_, items)
-	  local kind_idx = createItemKind("AI")
-	  local lsp_ai_id = 0
+        lsp = {
+          name = 'LSP',
+          module = 'blink.cmp.sources.lsp',
+          fallbacks = { 'buffer' },
+          async = true,
+          transform_items = function(_, items)
+            local kind_idx = createItemKind("AI")
+            local lsp_ai_id = 0
 
-	  local lsp_ai_clients = vim.lsp.get_clients({ name = "lsp_ai" })
-	  if #lsp_ai_clients == 1 then
-	    lsp_ai_id = lsp_ai_clients[1].id
-	  end
-
-          for _, item in ipairs(items) do
-            -- demote snippets
-            if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
-              item.score_offset = item.score_offset - 3
+            local lsp_ai_clients = vim.lsp.get_clients({ name = "lsp_ai" })
+            if #lsp_ai_clients == 1 then
+              lsp_ai_id = lsp_ai_clients[1].id
             end
 
-	    -- set kind to AI for lsp_ai sources
-	    if item.client_id == lsp_ai_id then
-	      item.kind = kind_idx
-	      item.score_offset = item.score_offset + 5
-	    end
-          end
+            for _, item in ipairs(items) do
+              -- demote snippets
+              if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
+                item.score_offset = item.score_offset - 3
+              end
 
-          -- filter out text items, since we have the buffer source
-          return vim.tbl_filter(
-            function(item) return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text end,
-            items
-          )
-        end,
-      },
-	codecompanion = {
+              -- set kind to AI for lsp_ai sources
+              if item.client_id == lsp_ai_id then
+                item.kind = kind_idx
+                item.score_offset = item.score_offset + 5
+              end
+            end
+
+            -- filter out text items, since we have the buffer source
+            return vim.tbl_filter(
+              function(item) return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text end,
+              items
+            )
+          end,
+        },
+        codecompanion = {
           name = "CodeCompanion",
           module = "codecompanion.providers.completion.blink",
         },
-	copilot = {
-	  name = "copilot",
-	  module = "blink-cmp-copilot",
-	  score_offset = 100,
-	  -- async = true,
-	  transform_items = setItemKind("Copilot"),
-	},
-	-- minuet = {
-	--   name = 'minuet',
-	--   module = 'minuet.blink',
-	--   score_offset = 100, -- Gives minuet higher priority among suggestions
-	--   -- async = true,
-	--   transform_items = setItemKind("AI"),
-	-- },
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          -- async = true,
+          transform_items = setItemKind("Copilot"),
+        },
+        -- minuet = {
+        --   name = 'minuet',
+        --   module = 'minuet.blink',
+        --   score_offset = 100, -- Gives minuet higher priority among suggestions
+        --   -- async = true,
+        --   transform_items = setItemKind("AI"),
+        -- },
       },
     },
   },
