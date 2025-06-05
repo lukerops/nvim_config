@@ -1,7 +1,7 @@
 ---
 name: lsp-ai
 description: LSP server leveraging AI/LLMs based for code completion.
-homepage: https://github.com/SilasMarvin/lsp-ai
+homepage: "https://github.com/SilasMarvin/lsp-ai"
 licenses:
   - MIT
 languages: []
@@ -9,7 +9,7 @@ categories:
   - LSP
 
 source:
-  id: pkg:github/SilasMarvin/lsp-ai@v0.7.1
+  id: "pkg:github/SilasMarvin/lsp-ai@v0.7.1"
   asset:
     - target: darwin_x64
       file: lsp-ai-x86_64-apple-darwin.gz
