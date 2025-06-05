@@ -4,9 +4,9 @@ local filePreferences = {}
 if config.editor.lsp.enableInlayHints then
   filePreferences.includeInlayParameterNameHints = "all"
   filePreferences.includeInlayFunctionParameterTypeHints = true
-  filePreferences.includeInlayVariableTypeHints = true
-  filePreferences.includeInlayPropertyDeclarationTypeHints = true
-  filePreferences.includeInlayFunctionLikeReturnTypeHints = true
+  -- filePreferences.includeInlayVariableTypeHints = true
+  -- filePreferences.includeInlayPropertyDeclarationTypeHints = true
+  -- filePreferences.includeInlayFunctionLikeReturnTypeHints = true
   filePreferences.includeInlayEnumMemberValueHints = true
 end
 
