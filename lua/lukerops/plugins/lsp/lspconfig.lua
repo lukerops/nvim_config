@@ -1,31 +1,53 @@
 local config = require("lukerops.config")
 
+local lspconfig_to_mason = {
+  lua_ls = 'lua-language-server',
+  pylsp = 'python-language-server',
+  gopls = 'gopls',
+  tofu_ls = 'tofu-ls',
+  terraformls = 'terraform-ls',
+}
+
 return {
   "neovim/nvim-lspconfig",
   cmd = { "LspInfo", "LspInstall", "LspStart", },
   event = { "BufReadPre", "BufNewFile", },
   dependencies = {
     "saghen/blink.cmp",
-    {
-      "williamboman/mason-lspconfig.nvim",
-      dependencies = { "williamboman/mason.nvim" },
-      opts = {
-        ensure_installed = { "lua_ls", "pylsp", "gopls", "terraformls" },
-        handlers = {
-          -- default handler
-          function(server_name)
-            require("lspconfig")[server_name].setup({})
-          end,
-
-          -- desativa a configuraço automática do tsserver
-          -- para utilizar o typescript-tools
-          ts_ls = function() end,
-        }
-      }
-    },
+    "williamboman/mason.nvim",
   },
   config = function()
     local lspconfig = require('lspconfig')
+    local mason = require('mason-registry')
+
+    local ensure_installed = {
+      "lua_ls",
+      -- "pylsp",
+      "gopls",
+      "tofu_ls",
+      'terraformls',
+    }
+
+    local packages = mason.get_installed_package_names()
+    for _, lsp_server in ipairs(ensure_installed) do
+      local package_name = lspconfig_to_mason[lsp_server]
+
+      local found = false
+      for _, installed_package in ipairs(packages) do
+        if installed_package == package_name then
+          found = true
+          break
+        end
+      end
+
+      if not found then
+        local package = mason.get_package(package_name)
+        package:install()
+      end
+
+      vim.lsp.enable(lsp_server)
+      vim.lsp.config(lsp_server, {})
+    end
 
     -- Add cmp_nvim_lsp capabilities settings to lspconfig
     lspconfig.util.default_config.capabilities = require('blink.cmp')
