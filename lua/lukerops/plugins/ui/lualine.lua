@@ -1,4 +1,5 @@
-local separator = { right = '', left = '' }
+-- local separator = { right = '', left = '' }
+local separator = {}
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -10,12 +11,12 @@ return {
       -- section_separators = {"", ""},
       -- disabled_filetypes = {},
       component_separators = '',
-      section_separators = { left = '', right = '' },
+      section_separators ='',
+      -- section_separators = { left = '', right = '' },
       disabled_filetypes = {
         statusline = {
-          "mason",
-          "lazy",
-	  "codecompanion",
+          "mason", "lazy", "codecompanion",
+          "DiffviewFiles",
         },
       },
     },
