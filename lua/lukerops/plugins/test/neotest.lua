@@ -41,6 +41,12 @@ return {
   },
   opts = function()
     return {
+      icons = {
+        running_animated = {"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"},
+      },
+      floating = {
+        border = config.ui.border,
+      },
       run = {
         augment = function(_, args)
           -- Add the environment variables from the .env file

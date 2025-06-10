@@ -29,7 +29,7 @@ return {
 
     -- Add cmp_nvim_lsp capabilities settings to lspconfig
     lspconfig.util.default_config.capabilities = require('blink.cmp')
-      .get_lsp_capabilities(lspconfig.util.default_config.capabilities)
+        .get_lsp_capabilities(lspconfig.util.default_config.capabilities)
 
     -- cria um on_attach default
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -46,7 +46,7 @@ return {
           vim.lsp.inlay_hint.enable(true, opts)
         end
 
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = config.ui.border }) end, opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
         vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
         vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)

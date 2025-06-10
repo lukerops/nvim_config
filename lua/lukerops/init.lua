@@ -2,11 +2,14 @@ require("lukerops.lazy")
 
 local config = require("lukerops.config")
 
--- Set colorscheme
+-- Define o tema
 vim.cmd.colorscheme(config.ui.colorscheme)
 
--- Enable mouse
+-- Habilita mouse
 vim.opt.mouse = "a"
 
--- Unify clipboard with system clipboard
+-- Unifica o clipboard com o do sistema
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"

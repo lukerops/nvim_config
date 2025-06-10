@@ -34,6 +34,7 @@ local defaults = {
         openSummary = "<leader>ts",
         runDebug = "<leader>tdbg",
       },
+      openGit = "<leader>gg",
     },
     ui = {
       scrollUp = "<C-Up>",
@@ -60,6 +61,7 @@ local defaults = {
     ai = {
       chat = {
         showLineNumber = false,
+        layout = "float",
       },
     },
   },
