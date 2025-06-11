@@ -3,7 +3,6 @@ local config = require("lukerops.config")
 return {
   "folke/todo-comments.nvim",
   cmd = { "TodoTrouble", "TodoTelescope" },
-  event = "BufReadPost",
   dependencies = { "folke/trouble.nvim", "nvim-telescope/telescope.nvim" },
   keys = {
     {
