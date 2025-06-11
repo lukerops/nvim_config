@@ -1,0 +1,29 @@
+---
+name: hurl
+description: LSP server leveraging AI/LLMs based for code completion.
+homepage: "https://github.com/Orange-OpenSource/hurl"
+licenses:
+  - Apache-2.0
+languages: []
+categories: []
+
+source:
+  id: "pkg:github/Orange-OpenSource/hurl@6.1.1"
+  asset:
+    - target: linux_arm64_gnu
+      file: hurl-{{ version }}-aarch64-unknown-linux-gnu.tar.gz
+      man: hurl-{{ version }}-aarch64-unknown-linux-gnu/man
+      hurl: hurl-{{ version }}-aarch64-unknown-linux-gnu/bin/hurl
+      hurlfmt: hurl-{{ version }}-aarch64-unknown-linux-gnu/bin/hurlfmt
+    - target: linux_x64_gnu
+      file: hurl-{{ version }}-x86_64-unknown-linux-gnu.tar.gz
+      man: hurl-{{ version }}-x86_64-unknown-linux-gnu/man
+      hurl: hurl-{{ version }}-x86_64-unknown-linux-gnu/bin/hurl
+      hurlfmt: hurl-{{ version }}-x86_64-unknown-linux-gnu/bin/hurlfmt
+
+bin:
+  hurl: "{{source.asset.hurl}}"
+  hurlfmt: "{{source.asset.hurlfmt}}"
+
+# share:
+#   man/: "{{source.asset.man}}"

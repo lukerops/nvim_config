@@ -1,0 +1,21 @@
+---
+name: ripgrep
+description: ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
+homepage: "https://github.com/BurntSushi/ripgrep"
+licenses:
+  - Apache-2.0
+languages: []
+categories: []
+
+source:
+  id: "pkg:github/BurntSushi/ripgrep@14.1.1"
+  asset:
+    - target: linux_x64_gnu
+      file: ripgrep-{{ version }}-x86_64-unknown-linux-musl.tar.gz
+      rg: ripgrep-{{ version }}-x86_64-unknown-linux-musl/rg
+
+bin:
+  rg: "{{source.asset.rg}}"
+
+# share:
+#   man/: "{{source.asset.man}}"
