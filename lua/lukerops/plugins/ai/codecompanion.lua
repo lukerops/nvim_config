@@ -3,9 +3,7 @@ local config = require("lukerops.config")
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
   },
   keys = {
     { "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle Code Companion Chat" },
@@ -35,22 +33,14 @@ return {
 	},
       },
     },
-    opts = {
-      language = "Português (Brasil)", -- Default is "English"
-    },
     strategies = {
       chat = {
 	-- adapter = "ollama",
 	adapter = "copilot",
         roles = {
-          ---The header name for the LLM's messages
-          ---@type string|fun(adapter: CodeCompanion.Adapter): string
           llm = function(adapter)
             return adapter.formatted_name
           end,
-
-          ---The header name for your messages
-          ---@type string
           user = "lukerops",
         },
 	slash_commands = {
@@ -93,6 +83,16 @@ return {
           },
         })
       end,
+    },
+    extensions = {
+      mcphub = {
+        callback = "mcphub.extensions.codecompanion",
+        opts = {
+          make_vars = true,
+          make_slash_commands = true,
+          show_result_in_chat = true,
+        },
+      },
     },
   }
 }
