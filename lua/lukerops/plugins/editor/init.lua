@@ -7,4 +7,5 @@ return {
   require("lukerops.plugins.editor.trouble"),
   require("lukerops.plugins.editor.todo-comments"),
   require("lukerops.plugins.editor.treesitter"),
+  require("lukerops.plugins.editor.overseer"),
 }

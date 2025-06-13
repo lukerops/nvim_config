@@ -47,6 +47,9 @@ return {
       floating = {
         border = config.ui.border,
       },
+      consumers = {
+        overseer = require("neotest.consumers.overseer"),
+      },
       run = {
         augment = function(_, args)
           -- Add the environment variables from the .env file
