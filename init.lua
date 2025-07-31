@@ -23,6 +23,8 @@ require('pluginmanager').setup({
   'zbirenbaum/copilot.lua',
   'MeanderingProgrammer/render-markdown.nvim',
   'olimorris/codecompanion.nvim',
+  'williamboman/mason.nvim',
+  'lewis6991/gitsigns.nvim',
 })
 
 --------------------
@@ -71,9 +73,9 @@ vim.diagnostic.config({
 vim.keymap.set('n', '<c-w>d', function() vim.diagnostic.open_float({ border = 'rounded' }) end,
   { desc = 'Show Diagnostics' })
 
-vim.keymap.set("n", "<M-Up>", ":m .-2<CR>==")
-vim.keymap.set("n", "<M-Down>", ":m .+1<CR>==")
-vim.keymap.set("i", "<M-Up>", "<Esc>:m .-2<CR>==gi")
-vim.keymap.set("i", "<M-Down>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "<M-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set('n', '<M-Up>', ':m .-2<CR>==')
+vim.keymap.set('n', '<M-Down>', ':m .+1<CR>==')
+vim.keymap.set('i', '<M-Up>', '<Esc>:m .-2<CR>==gi')
+vim.keymap.set('i', '<M-Down>', '<Esc>:m .+1<CR>==gi')
+vim.keymap.set('v', '<M-Up>', ':m \'<-2<CR>gv=gv')
+vim.keymap.set('v', '<M-Down>', ':m \'>+1<CR>gv=gv')
