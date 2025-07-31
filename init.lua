@@ -67,6 +67,7 @@ require('pluginmanager').setup({
   'olimorris/codecompanion.nvim',
   'williamboman/mason.nvim',
   'lewis6991/gitsigns.nvim',
+  'giuxtaposition/blink-cmp-copilot',
   'saghen/blink.cmp',
   { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
 })
