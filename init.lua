@@ -25,6 +25,7 @@ require('pluginmanager').setup({
   'olimorris/codecompanion.nvim',
   'williamboman/mason.nvim',
   'lewis6991/gitsigns.nvim',
+  'saghen/blink.cmp'
 })
 
 --------------------
