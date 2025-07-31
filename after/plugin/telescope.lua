@@ -39,4 +39,4 @@ vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', { desc = 'Find 
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>ch', '<cmd>Telescope command_history<cr>', { desc = 'Command History' })
-vim.keymap.set('n', '<leader>/', '<cmd>Telescope keymaps<cr>', { desc = 'Key Maps' })
+vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<cr>', { desc = 'Key Maps' })

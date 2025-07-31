@@ -23,6 +23,9 @@ function M.setup(opts)
   require('lazy').setup({
     spec = opts,
     ui = { border = 'rounded' },
+    -- https://github.com/folke/lazy.nvim/blob/6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a/doc/lazy.nvim.txt#L807
+    -- https://vonheikemen.github.io/devlog/tools/installing-neovim-plugins-without-a-plugin-manager/
+    performance = { reset_packpath = true },
   })
 end
 

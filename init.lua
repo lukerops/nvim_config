@@ -1,33 +1,5 @@
 local border = 'rounded'
 
----------------------
---- pluginmanager ---
----------------------
-
-require('pluginmanager').setup({
-  {
-    'folke/tokyonight.nvim',
-    opts = { style = 'night' },
-  },
-  {
-    'stevearc/oil.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' },
-  },
-  'nvim-treesitter/nvim-treesitter',
-  'neovim/nvim-lspconfig',
-  'zbirenbaum/copilot.lua',
-  'MeanderingProgrammer/render-markdown.nvim',
-  'olimorris/codecompanion.nvim',
-  'williamboman/mason.nvim',
-  'lewis6991/gitsigns.nvim',
-  'saghen/blink.cmp'
-})
-
 --------------------
 --- nvim configs ---
 --------------------
@@ -47,8 +19,6 @@ vim.opt.title = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = 'yes'
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'noselect' }
--- define o tema
-vim.cmd.colorscheme('tokyonight-night')
 
 vim.diagnostic.config({
   -- update_in_insert = true,
@@ -80,3 +50,25 @@ vim.keymap.set('i', '<M-Up>', '<Esc>:m .-2<CR>==gi')
 vim.keymap.set('i', '<M-Down>', '<Esc>:m .+1<CR>==gi')
 vim.keymap.set('v', '<M-Up>', ':m \'<-2<CR>gv=gv')
 vim.keymap.set('v', '<M-Down>', ':m \'>+1<CR>gv=gv')
+
+---------------------
+--- pluginmanager ---
+---------------------
+
+require('pluginmanager').setup({
+  'nvim-tree/nvim-web-devicons',
+  'nvim-lua/plenary.nvim',
+  'folke/tokyonight.nvim',
+  'stevearc/oil.nvim',
+  'nvim-treesitter/nvim-treesitter',
+  'neovim/nvim-lspconfig',
+  'zbirenbaum/copilot.lua',
+  'MeanderingProgrammer/render-markdown.nvim',
+  'olimorris/codecompanion.nvim',
+  'williamboman/mason.nvim',
+  'lewis6991/gitsigns.nvim',
+  'saghen/blink.cmp',
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
+})
+
+vim.lsp.enable({'ts_ls'})
