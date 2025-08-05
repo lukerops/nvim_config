@@ -1,4 +1,4 @@
-local enable_copilot = os.getenv('USER') == "lucas.cvieira"
+local enable_copilot = os.getenv('USER') == 'lucas.cvieira'
 local border = 'rounded'
 
 local function findItemKind(CompletionItemKind, kind)
@@ -12,7 +12,7 @@ local function findItemKind(CompletionItemKind, kind)
 end
 
 local function createItemKind(kind)
-  local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+  local CompletionItemKind = require('blink.cmp.types').CompletionItemKind
   local kind_idx = findItemKind(CompletionItemKind, kind)
 
   if kind_idx == 0 then
@@ -43,10 +43,10 @@ local providers = {
     fallbacks = { 'buffer' },
     async = true,
     transform_items = function(_, items)
-      local kind_idx = createItemKind("AI")
+      local kind_idx = createItemKind('AI')
       local lsp_ai_id = 0
 
-      local lsp_ai_clients = vim.lsp.get_clients({ name = "lsp_ai" })
+      local lsp_ai_clients = vim.lsp.get_clients({ name = 'lsp_ai' })
       if #lsp_ai_clients == 1 then
         lsp_ai_id = lsp_ai_clients[1].id
       end
@@ -75,21 +75,21 @@ local providers = {
 
 -- habilita o copilot
 if enable_copilot then
-  table.insert(sources, "copilot")
-  providers["copilot"] = {
-    name = "copilot",
-    module = "blink-cmp-copilot",
+  table.insert(sources, 'copilot')
+  providers['copilot'] = {
+    name = 'copilot',
+    module = 'blink-cmp-copilot',
     score_offset = 100,
     async = true,
-    transform_items = setItemKind("Copilot"),
+    transform_items = setItemKind('Copilot'),
   }
 end
 
 -- habilita codecompanion
-table.insert(sources, "codecompanion")
-providers["codecompanion"] = {
-  name = "CodeCompanion",
-  module = "codecompanion.providers.completion.blink",
+table.insert(sources, 'codecompanion')
+providers['codecompanion'] = {
+  name = 'CodeCompanion',
+  module = 'codecompanion.providers.completion.blink',
 }
 
 
@@ -123,8 +123,13 @@ require('blink.cmp').setup({
   completion = {
     menu = {
       auto_show = function(ctx, _) return ctx.mode ~= 'cmdline' end,
-      border = border,
-      draw = { columns = { { 'label', 'label_description', gap = 1 }, { "kind_icon", "kind", gap = 2 } } }
+      border = 'rounded',
+      scrollbar = false,
+      draw = {
+        -- columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 2 } },
+        columns = { { 'kind_icon', 'label', gap = 2 }, { 'label_description' } },
+        treesitter = { 'lsp' },
+      }
     },
     documentation = {
       auto_show = true,
@@ -135,7 +140,7 @@ require('blink.cmp').setup({
     -- Avoid unnecessary request
     trigger = { prefetch_on_insert = false },
   },
-  signature = { window = { border = border } },
+  -- signature = { window = { border = border } },
 
   -- Default list of enabled providers defined so that you can extend it
   -- elsewhere in your config, without redefining it, due to `opts_extend`
