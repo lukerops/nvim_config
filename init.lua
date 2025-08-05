@@ -68,7 +68,13 @@ require('pluginmanager').setup({
   'williamboman/mason.nvim',
   'lewis6991/gitsigns.nvim',
   'giuxtaposition/blink-cmp-copilot',
-  'saghen/blink.cmp',
+  'nvim-neotest/nvim-nio',
+  'nvim-neotest/neotest',
+  'nvim-neotest/neotest-jest',
+  'mfussenegger/nvim-dap',
+  'rcarriga/nvim-dap-ui',
+  'rafamadriz/friendly-snippets',
+  { 'saghen/blink.cmp', version = '1.*' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
 })
 
