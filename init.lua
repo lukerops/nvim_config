@@ -78,4 +78,4 @@ require('pluginmanager').setup({
   { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
 })
 
-vim.lsp.enable({'ts_ls'})
+vim.lsp.enable({'ts_ls', 'gopls'})
