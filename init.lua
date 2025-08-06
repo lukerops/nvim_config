@@ -77,5 +77,3 @@ require('pluginmanager').setup({
   { 'saghen/blink.cmp', version = '1.*' },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.8' },
 })
-
-vim.lsp.enable({'ts_ls', 'gopls'})
