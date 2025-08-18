@@ -6,11 +6,11 @@ return {
     'nvim-neotest/neotest-jest',
   },
   keys = {
-    { '<leader>tn', '<cmd>lua require('neotest').run.run()<cr>', desc = 'Run Nearest Test' },
-    { '<leader>tf', '<cmd>lua require('neotest').run.run({ vim.fn.expand('%') })<cr>', desc = 'Run All Tests in File' },
-    { '<leader>ts', '<cmd>lua require('neotest').summary.toggle()<cr>', desc = 'Toggle Test Summary' },
-    { '<leader>to', '<cmd>lua require('neotest').output.open({ enter = true })<cr>', desc = 'Open Test Output' },
-    { '<leader>td', '<cmd>lua require('neotest').run.run({ strategy = 'dap' })<cr>', desc = 'Run Nearest Test in Debug' },
+    { '<leader>tn', '<cmd>lua require(\'neotest\').run.run()<cr>', desc = 'Run Nearest Test' },
+    { '<leader>tf', '<cmd>lua require(\'neotest\').run.run({ vim.fn.expand(\'%\') })<cr>', desc = 'Run All Tests in File' },
+    { '<leader>ts', '<cmd>lua require(\'neotest\').summary.toggle()<cr>', desc = 'Toggle Test Summary' },
+    { '<leader>to', '<cmd>lua require(\'neotest\').output.open({ enter = true })<cr>', desc = 'Open Test Output' },
+    { '<leader>td', '<cmd>lua require(\'neotest\').run.run({ strategy = \'dap\' })<cr>', desc = 'Run Nearest Test in Debug' },
   },
   opts = function()
     return {
