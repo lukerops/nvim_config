@@ -9,7 +9,11 @@ else
   table.insert(registries, 'file:' .. vim.fn.stdpath('config') .. '/mason-registry')
 end
 
-require('mason').setup({
-  ui = { border = 'rounded' },
-  registries = registries,
-})
+return {
+  'williamboman/mason.nvim',
+  tag = 'v2.0.1',
+  opts = {
+    ui = { border = 'rounded' },
+    registries = registries,
+  },
+}
