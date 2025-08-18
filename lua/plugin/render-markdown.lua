@@ -1,7 +1,7 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   tag = 'v8.7.0',
-  ft = { "markdown", "codecompanion" },
+  ft = { 'markdown', 'codecompanion' },
   opts = {
     completions = { lsp = { enabled = true } },
     file_types = { 'markdown', 'codecompanion' },

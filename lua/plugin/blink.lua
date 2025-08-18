@@ -102,7 +102,7 @@ return {
     'rafamadriz/friendly-snippets',
     { 'neovim/nvim-lspconfig', tag = 'v2.4.0' },
   },
-  opts_extend = { "sources.default" },
+  opts_extend = { 'sources.default' },
   opts = {
     keymap = {
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
