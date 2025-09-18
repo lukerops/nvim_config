@@ -1,7 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   tag = 'v0.10.0',
-  run = ':TSUpdate',
+  build = ':TSUpdate',
+  main = 'nvim-treesitter.configs',
   opts = {
     ensure_installed = {
       'go', 'javascript', 'typescript', 'python', 'lua', 'bash',
