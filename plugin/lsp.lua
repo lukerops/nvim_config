@@ -1,5 +1,3 @@
-local border = 'rounded'
-
 -- https://vonheikemen.github.io/devlog/tools/neovim-lsp-client-guide/
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
@@ -22,9 +20,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- keymaps
-    bufmap('n', 'K', function() vim.lsp.buf.hover({ border = border }) end)
-    bufmap('i', '<c-space>', function() vim.lsp.completion.get() end)
-    bufmap({ 'i', 's' }, '<c-s>', function() vim.lsp.buf.signature_help({ border = border }) end)
-    bufmap('n', 'gd', function() vim.lsp.buf.definition() end)
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover({ border = \'rounded\' })<cr>')
+    bufmap('i', '<c-space>', '<cmd>lua vim.lsp.completion.get()<cr>')
+    bufmap({ 'i', 's' }, '<c-s>', '<cmd>lua vim.lsp.buf.signature_help({ border = \'rounded\' })<cr>')
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', 'grr', '<cmd>Trouble lsp_references<cr>')
   end,
 })
