@@ -1,6 +1,6 @@
 return {
   'nvim-neotest/neotest',
-  tag = 'v5.9.1',
+  tag = 'v5.11.1',
   dependencies = {
     { 'nvim-neotest/nvim-nio', tag = 'v1.10.1' },
     'nvim-neotest/neotest-jest',

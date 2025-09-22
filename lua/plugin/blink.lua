@@ -95,7 +95,7 @@ providers['codecompanion'] = {
 
 return {
   'saghen/blink.cmp',
-  tag = 'v1.6.0',
+  tag = 'v1.7.0',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'giuxtaposition/blink-cmp-copilot',

@@ -1,6 +1,6 @@
 return {
   'olimorris/codecompanion.nvim',
-  tag = 'v17.14.0',
+  tag = 'v17.23.0',
   keys = {
     { '<leader>ai', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Code Companion Chat' },
   },

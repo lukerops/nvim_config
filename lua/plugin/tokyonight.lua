@@ -1,5 +1,6 @@
 return {
   'folke/tokyonight.nvim',
+  tag = 'v4.12.0',
   opts = {
     style = 'night'
   },
