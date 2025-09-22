@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover({ border = \'rounded\' })<cr>')
     bufmap('i', '<c-space>', '<cmd>lua vim.lsp.completion.get()<cr>')
     bufmap({ 'i', 's' }, '<c-s>', '<cmd>lua vim.lsp.buf.signature_help({ border = \'rounded\' })<cr>')
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', 'gd', '<cmd>Trouble lsp_definitions<cr>')
     bufmap('n', 'grr', '<cmd>Trouble lsp_references<cr>')
   end,
 })
