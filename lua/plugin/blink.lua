@@ -100,7 +100,7 @@ return {
     'nvim-lua/plenary.nvim',
     'giuxtaposition/blink-cmp-copilot',
     'rafamadriz/friendly-snippets',
-    { 'neovim/nvim-lspconfig', tag = 'v2.4.0' },
+    { 'neovim/nvim-lspconfig', tag = 'v2.5.0' },
   },
   opts_extend = { 'sources.default' },
   opts = {
